@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <form onsubmit="return validateusandpass()">
+        Enter username : <input type="text" id="uname"><br>
+        Enter password : <input type="password" id="pass"><br><br>
+        <input type="submit" value="login">
+    </form>
+    <script>
+        function validateusandpass(){
+            let user = document.getElementById("uname").value;
+            let passw = document.getElementById("pass").value;
+            if(user==null || user==""){
+                alert("Enter user name!")
+            }else if(passw==null|| passw ==""){
+                alert("Enter pasword");
+            }else if(user==passw){
+                alert("Welcome to the page")
+            }
+            else{
+                alert("invalid details");
+            }
+        }
+    </script>
+</body>
+</html>

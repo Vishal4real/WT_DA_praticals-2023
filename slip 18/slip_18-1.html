@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function fibo(){
+      let n = parseInt(document.getElementById("limit").value);
+      let n1 = 0 , n2 = 1, sum,i;
+      for(i=1;i<=n;i++){
+        document.writeln(n1);
+        sum=n1+n2;
+        n1=n2;
+        n2=sum;
+      }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>FIBONACHII SERISES</h1>
+    <form onsubmit="return fibo()">
+        Enter the limit of series: <input type="text" id="limit">
+        <input type="submit" value="Show serires">
+    </form>
+  </body>
+</html>
