@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<iteminfo>
+    <item>
+        <item-name>item1</item-name>
+        <item-rate>3502</item-rate>
+        <item-quantity>14</item-quantity>
+    </item>
+    <item>
+        <item-name>item2</item-name>
+        <item-rate>350</item-rate>
+        <item-quantity>11</item-quantity>
+    </item>
+    <item>
+        <item-name>item3</item-name>
+        <item-rate>3501</item-rate>
+        <item-quantity>13</item-quantity>
+    </item>
+    <item>
+        <item-name>item4</item-name>
+        <item-rate>3502</item-rate>
+        <item-quantity>12</item-quantity>
+    </item>
+    <item>
+        <item-name>item5</item-name>
+        <item-rate>3504</item-rate>
+        <item-quantity>11</item-quantity>
+    </item>
+</iteminfo>

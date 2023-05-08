@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movies>
+    <movieinfo>
+        <movietitle>3idiots</movietitle>
+        <movieno>1</movieno>
+        <actorname>gareeb khan</actorname>
+        <year>2000</year>
+    </movieinfo>
+      <movieinfo>
+        <movietitle>sultan</movietitle>
+        <movieno>2</movieno>
+        <actorname>killeer</actorname>
+        <year>2001</year>
+    </movieinfo>
+      <movieinfo>
+        <movietitle>beshram</movietitle>
+        <movieno>3</movieno>
+        <actorname>shivam</actorname>
+        <year>2000</year>
+    </movieinfo>
+      <movieinfo>
+        <movietitle>clever</movietitle>
+        <movieno>4</movieno>
+        <actorname>Vishal</actorname>
+        <year>2000</year>
+    </movieinfo>
+      <movieinfo>
+        <movietitle>idiot</movietitle>
+        <movieno>5</movieno>
+        <actorname>Tejas</actorname>
+        <year>2000</year>
+    </movieinfo>
+</movies>

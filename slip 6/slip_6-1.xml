@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BookInfo>
+    <Book>
+        <Bookname>Java</Bookname>
+        <Bookno>1</Bookno>
+        <Author>vishal</Author>
+        <year>2001</year>
+    </Book>
+    <Book>
+        <Bookname>C++</Bookname>
+        <Bookno>2</Bookno>
+        <Author>shivam</Author>
+        <year>2001</year>
+    </Book>
+    <Book>
+        <Bookname>Python</Bookname>
+        <Bookno>3</Bookno>
+        <Author>tejas</Author>
+        <year>2001</year>
+    </Book>
+    <Book>
+        <Bookname>ajax</Bookname>
+        <Bookno>4</Bookno>
+        <Author>saurabh</Author>
+        <year>2001</year>
+    </Book>
+</BookInfo>
