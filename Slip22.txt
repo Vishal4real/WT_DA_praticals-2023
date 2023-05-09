@@ -1,0 +1,73 @@
+Slip 22
+Q1
+<?php
+
+// Establish connection to PostgreSQL database
+$conn = pg_connect(“host=localhost dbname=your_database_name user=your_username password=your_password”);
+
+// Check if connection was successful
+If (!$conn) {
+    Echo “Connection failed.”;
+    Exit;
+}
+
+// Create student table
+$query = “CREATE TABLE student (
+            Rollno INTEGER PRIMARY KEY,
+            Name VARCHAR(50) NOT NULL,
+            Class VARCHAR(10) NOT NULL
+        )”;
+$result = pg_query($conn, $query);
+
+If (!$result) {
+    Echo “Error creating table: “ . pg_last_error($conn);
+    Exit;
+} else {
+    Echo “Table created successfully.<br>”;
+}
+
+// Insert 5 records into student table
+$insert_query = “INSERT INTO student (rollno, name, class)
+                    VALUES (1, ‘John Doe’, ‘10A’),
+                           (2, ‘Jane Smith’, ‘9B’),
+                           (3, ‘Bob Johnson’, ‘11C’),
+                           (4, ‘Sarah Lee’, ‘12D’),
+                           (5, ‘Tom Brown’, ‘8E’)”;
+
+$insert_result = pg_query($conn, $insert_query);
+
+If (!$insert_result) {
+    Echo “Error inserting records: “ . pg_last_error($conn);
+    Exit;
+} else {
+    Echo “Records inserted successfully.”;
+}
+
+// Close database connection
+Pg_close($conn);
+
+?>
+
+
+
+Q2
+Import nltk
+From nltk.corpus import stopwords
+From nltk.tokenize import word_tokenize
+
+# sample text paragraph
+Text = “Hello all, Welcome to Python Programming Academy. Python Programming Academy is a nice platform to learn new programming skills. It is difficult to get enrolled in this Academy.”
+
+# tokenize the text paragraph
+Words = word_tokenize(text)
+
+# define stopwords
+Stop_words = set(stopwords.words(‘english’))
+
+# remove stopwords
+Filtered_words = [word for word in words if word.casefold() not in stop_words]
+
+# join filtered words to form a sentence
+Filtered_sentence = ‘ ‘.join(filtered_words)
+
+Print(filtered_sentence)

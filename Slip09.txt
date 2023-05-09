@@ -1,0 +1,61 @@
+Slip 9
+Q1
+Function validateForm() {
+  // Get the username and password input values
+  Var username = document.forms[“membershipForm”][“username”].value;
+  Var password = document.forms[“membershipForm”][“password”].value;
+
+  // Validate username
+  If (username == “”) {
+    Alert(“Username must be filled out”);
+    Return false;
+  }
+
+  // Validate password
+  If (password == “”) {
+    Alert(“Password must be filled out”);
+    Return false;
+  }
+  
+  // Return true if both username and password are valid
+  Return true;
+}
+
+
+
+
+Q2
+Items=[‘item1’,’item2’,’item3’,’item4’]
+
+Transactions = [    [‘item1’, ‘item2’, ‘item3’],
+    [‘item2’, ‘item3’],
+    [‘item1’, ‘item2’, ‘item4’],
+    [‘item1’, ‘item4’],
+    [‘item2’, ‘item3’, ‘item4’],
+    [‘item1’, ‘item3’, ‘item4’],
+    [‘item1’, ‘item2’],
+    [‘item1’, ‘item3’],
+    [‘item3’, ‘item4’],
+    [‘item2’, ‘item4’]
+]
+
+From mlxtend.preprocessing import TransactionEncoder
+From mlxtend.frequent_patterns import apriori, association_rules
+
+# Convert the transactions into a binary matrix
+Te = TransactionEncoder()
+Te_ary = te.fit_transform(transactions)
+
+# Convert the binary matrix into a pandas DataFrame
+Df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Generate frequent itemsets with a minimum support of 0.3
+Frequent_itemsets = apriori(df, min_support=0.3, use_colnames=True)
+
+# Generate association rules with a minimum confidence of 0.7
+Association_rules = association_rules(frequent_itemsets, metric=”confidence”, min_threshold=0.7)
+
+# Print the frequent itemsets and association rules
+Print(frequent_itemsets)
+Print(association_rules)
+

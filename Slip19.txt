@@ -1,0 +1,65 @@
+Slip 19
+Q1
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Validate User Name and Password</title>
+    <script>
+      Function validateForm() {
+        Var username = document.forms[“myForm”][“username”].value;
+        Var password = document.forms[“myForm”][“password”].value;
+
+        If (username == “”) {
+          Alert(“Username must be filled out”);
+          Return false;
+        }
+
+        If (password == “”) {
+          Alert(“Password must be filled out”);
+          Return false;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Validate User Name and Password</h2>
+    <form name=”myForm” onsubmit=”return validateForm()” method=”post”>
+      <label for=”username”>Username:</label>
+      <input type=”text” id=”username” name=”username”><br><br>
+      <label for=”password”>Password:</label>
+      <input type=”password” id=”password” name=”password”><br><br>
+      <input type=”submit” value=”Submit”>
+    </form>
+  </body>
+</html>
+
+
+
+Q2
+Import pandas as pd
+From textblob import TextBlob
+From wordcloud import WordCloud, STOPWORDS
+Import matplotlib.pyplot as plt
+
+# Load the dataset
+Df = pd.read_csv(‘movie_review.csv’)
+
+# Add a column for sentiment analysis using TextBlob
+Df[‘Sentiment’] = df[‘Review’].apply(lambda x: TextBlob(x).sentiment.polarity)
+
+# Create a new dataframe for positive reviews only
+Pos_df = df[df[‘Sentiment’] > 0.2]
+
+# Create a wordcloud for positive reviews
+Wordcloud = WordCloud(width = 800, height = 800, 
+                Background_color =’white’, 
+                Stopwords = STOPWORDS, 
+                Min_font_size = 10).generate(‘ ‘.join(pos_df[‘Review’]))
+
+# Plot the wordcloud
+Plt.figure(figsize = (8, 8), facecolor = None) 
+Plt.imshow(wordcloud) 
+Plt.axis(“off”) 
+Plt.tight_layout(pad = 0) 
+  
+Plt.show()

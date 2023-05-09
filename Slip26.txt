@@ -1,0 +1,103 @@
+Slip 26
+Q1
+Html file
+
+<select id=”employee-list”>
+  <option value=””>Select an employee</option>
+  <!—Populate this dropdown with employee names using PHP 
+</select>
+
+<div id=”employee-details”>
+  <!—Employee details will be displayed here 
+</div>
+
+Ajax file 
+
+$(document).ready(function() {
+  // Add event listener to the select dropdown
+  $(‘#employee-list’).change(function() {
+    Var selectedEmployee = $(this).val();
+    // Make an AJAX request to fetch employee details
+    $.ajax({
+      url: ‘empdetails.php’,
+      type: ‘POST’,
+      data: { employeeName: selectedEmployee },
+      dataType: ‘json’,
+      success: function(response) {
+        // Parse the JSON response and display employee details
+        Var detailsHtml = ‘Employee Name: ‘ + response.ename + ‘<br>’ +
+                          ‘Designation: ‘ + response.designation + ‘<br>’ +
+                          ‘Salary: ‘ + response.salary;
+        $(‘#employee-details’).html(detailsHtml);
+      },
+      Error: function(xhr, status, error) {
+        Console.log(‘Error:’, error);
+      }
+    });
+  });
+});
+
+Php file as empdetails.php
+
+<?php
+// Establish database connection
+$conn = pg_connect(“host=localhost dbname=database_name user=username password=password”);
+If (!$conn) {
+  Die(‘Connection failed: ‘ . pg_last_error());
+}
+
+// Get the selected employee name from AJAX request
+$employeeName = $_POST[‘employeeName’];
+
+// Query the EMP table for the details of the selected employee
+$sql = “SELECT * FROM EMP WHERE ename = ‘$employeeName’”;
+$result = pg_query($conn, $sql);
+
+If (pg_num_rows($result) > 0) {
+  // Build a JSON object with employee details
+  $employee = pg_fetch_assoc($result);
+  $response = array(
+    ‘ename’ => $employee[‘ename’],
+    ‘designation’ => $employee[‘designation’],
+    ‘salary’ => $employee[‘salary’]
+  );
+  Echo json_encode($response);
+} else {
+  Echo “Employee not found”;
+}
+
+// Close database connection
+Pg_close($conn);
+?>
+
+
+Q. 2 
+Import re
+From nltk.tokenize import sent_tokenize
+From sklearn.feature_extraction.text import TfidfVectorizer
+From sklearn.metrics.pairwise import cosine_similarity
+
+# Text to summarize
+Text = “Hello all, Welcome to Python Programming Academy. Python Programming Academy is a nice platform to learn new programming skills. It is difficult to get enrolled in this Academy.”
+
+# Preprocess the text to remove special characters and digits
+Preprocessed_text = re.sub(r’[^a-zA-Z\s]’, ‘’, text)
+
+# Tokenize the preprocessed text into sentences
+Sentences = sent_tokenize(preprocessed_text)
+
+# Calculate the importance score of each sentence using TF-IDF
+Vectorizer = TfidfVectorizer()
+Tfidf_matrix = vectorizer.fit_transform(sentences)
+Similarity_matrix = cosine_similarity(tfidf_matrix)
+
+# Select top N sentences based on their importance score
+N = 2
+Top_sentences = sorted(range(len(similarity_matrix[-1])), key=lambda i: similarity_matrix[-1][i])[-N:]
+
+# Concatenate the top sentences to form the summary
+Summary = ‘’
+For i in top_sentences:
+    Summary += sentences[i] + ‘ ‘
+
+Print(summary)

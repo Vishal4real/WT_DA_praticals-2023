@@ -1,0 +1,115 @@
+slip 2
+Q1
+Fristpage.html
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Change preferences</title>
+</head>
+<body>
+	<h1>Change preferences</h1>
+	<form action=”secondpage.php” method=”post”>
+		<label for=”fontstyle”>Font Style:</label>
+		<select name=”fontstyle” id=”fontstyle”>
+			<option value=”Arial”>Arial</option>
+			<option value=”Times New Roman”>Times New Roman</option>
+			<option value=”Verdana”>Verdana</option>
+		</select><br><br>
+		<label for=”fontsize”>Font Size:</label>
+		<select name=”fontsize” id=”fontsize”>
+			<option value=”12”>12</option>
+			<option value=”14”>14</option>
+			<option value=”16”>16</option>
+		</select><br><br>
+		<label for=”fontcolor”>Font Color:</label>
+		<input type=”color” name=”fontcolor” id=”fontcolor”><br><br>
+		<label for=”bgcolor”>Background Color:</label>
+		<input type=”color” name=”bgcolor” id=”bgcolor”><br><br>
+		<input type=”submit” name=”submit” value=”Save”>
+	</form>
+</body>
+</html>
+
+Secondpage.php
+
+<?php
+If(isset($_POST[‘submit’])) {
+	$fontstyle = $_POST[‘fontstyle’];
+	$fontsize = $_POST[‘fontsize’];
+	$fontcolor = $_POST[‘fontcolor’];
+	$bgcolor = $_POST[‘bgcolor’];
+	
+	// Set the cookie values
+	Setcookie(‘fontstyle’, $fontstyle, time()+86400);
+	Setcookie(‘fontsize’, $fontsize, time()+86400);
+	Setcookie(‘fontcolor’, $fontcolor, time()+86400);
+	Setcookie(‘bgcolor’, $bgcolor, time()+86400);
+	
+	// Redirect to the next page
+	Header(‘Location: thirdpage.php’);
+	Exit();
+}
+?>
+
+Thirdpage.php
+
+<?php
+// Retrieve the cookie values
+$fontstyle = isset($_COOKIE[‘fontstyle’]) ? $_COOKIE[‘fontstyle’] : ‘Arial’;
+$fontsize = isset($_COOKIE[‘fontsize’]) ? $_COOKIE[‘fontsize’] : ‘12’;
+$fontcolor = isset($_COOKIE[‘fontcolor’]) ? $_COOKIE[‘fontcolor’] : ‘#000000’;
+$bgcolor = isset($_COOKIE[‘bgcolor’]) ? $_COOKIE[‘bgcolor’] : ‘#FFFFFF’;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page with new settings</title>
+	<style type=”text/css”>
+		Body {
+			Font-family: <?php echo $fontstyle ?>;
+			Font-size: <?php echo $fontsize ?>px;
+			Color: <?php echo $fontcolor ?>;
+			Background-color: <?php echo $bgcolor ?>;
+		}
+	</style>
+</head>
+<body>
+	<h1>Page with new settings</h1>
+	<p>This is the page with the new settings. The font style is <?php echo $fontstyle ?>, the font size is <?php echo $fontsize ?>px, the font color is <?php echo $fontcolor ?>, and the background color is <?php echo $bgcolor ?>.</p>
+</body>
+</html>
+
+
+Q2
+Import numpy as np
+Import pandas as pd
+From sklearn.model_selection import train_test_split
+From sklearn.linear_model import LinearRegression
+
+# Create the Salary dataset
+Data = {‘YearsExperience’: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 
+        ‘Salary’: [50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000]}
+Df = pd.DataFrame(data)
+
+# Identify the independent and target variables
+X = df.iloc[:, 0:1].values
+Y = df.iloc[:, 1].values
+
+# Split the variables into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+# Print the training and testing sets
+Print(“X_train:\n”, X_train)
+Print(“y_train:\n”, y_train)
+Print(“X_test:\n”, X_test)
+Print(“y_test:\n”, y_test)
+
+# Build a simple linear regression model
+Regressor = LinearRegression()
+Regressor.fit(X_train, y_train)
+
+# Print the coefficients and intercept
+Print(“Coefficients:”, regressor.coef_)
+Print(“Intercept:”, regressor.intercept_)

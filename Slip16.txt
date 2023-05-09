@@ -1,0 +1,120 @@
+Slip 16
+Q1
+Xml file book_details.xml
+
+<books>
+	<book>
+		<title>The Great Gatsby</title>
+		<author>F. Scott Fitzgerald</author>
+		<year>1925</year>
+		<price>10.99</price>
+	</book>
+	<book>
+		<title>To Kill a Mockingbird</title>
+		<author>Harper Lee</author>
+		<year>1960</year>
+		<price>8.99</price>
+	</book>
+	<book>
+		<title>1984</title>
+		<author>George Orwell</author>
+		<year>1949</year>
+		<price>6.99</price>
+	</book>
+	<book>
+		<title>Pride and Prejudice</title>
+		<author>Jane Austen</author>
+		<year>1813</year>
+		<price>7.99</price>
+	</book>
+</books>
+
+
+Ajax file
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Details</title>
+	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+	<script>
+		$(document).ready(function(){
+			$(“select”).change(function(){
+				Var book = $(this).val();
+				$.ajax({
+					url: “book_details.xml”,
+					dataType: “xml”,
+					success: function(xml){
+						$(xml).find(‘book’).each(function(){
+							Var title = $(this).find(‘title’).text();
+							If (title == book) {
+								Var author = $(this).find(‘author’).text();
+								Var year = $(this).find(‘year’).text();
+								Var price = $(this).find(‘price’).text();
+								$(“#details”).html(“Author: “ + author + “<br>Year: “ + year + “<br>Price: “ + price);
+							}
+						});
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<select>
+		<option>Select a book</option>
+		<option>The Great Gatsby</option>
+		<option>To Kill a Mockingbird</option>
+		<option>1984</option>
+		<option>Pride and Prejudice</option>
+	</select>
+	<div id=”details”></div>
+</body>
+</html>
+
+
+
+Q2
+Import re
+Import nltk
+From nltk.corpus import stopwords
+From nltk.tokenize import sent_tokenize, word_tokenize
+From heapq import nlargest
+
+# Sample text paragraph you can write any text
+
+Text = “Natural language processing (NLP) is a subfield of linguistics, computer science, information engineering, and artificial intelligence concerned with the interactions between computers and human languages, in particular how to program computers to process and analyze large amounts of natural language data. Challenges in natural language processing frequently involve speech recognition, natural language understanding, and natural language generation. The history of natural language processing generally started in the 1950s, although work can be found from earlier periods.”
+
+# Remove special characters and digits
+Text = re.sub(‘[^a-zA-Z]’, ‘ ‘, text)
+
+# Tokenize the text into sentences
+Sentences = sent_tokenize(text)
+
+# Tokenize each sentence into words and remove stop words
+Stop_words = set(stopwords.words(‘english’))
+Words = []
+For sentence in sentences:
+    Words.extend(word_tokenize(sentence))
+Words = [word.lower() for word in words if word.lower() not in stop_words]
+
+# Calculate word frequency
+Word_freq = nltk.FreqDist(words)
+
+# Calculate sentence scores based on word frequency
+Sentence_scores = {}
+For sentence in sentences:
+    For word in word_tokenize(sentence.lower()):
+        If word in word_freq:
+            If len(sentence.split(‘ ‘)) < 30:
+                If sentence not in sentence_scores:
+                    Sentence_scores[sentence] = word_freq[word]
+                Else:
+                    Sentence_scores[sentence] += word_freq[word]
+
+# Generate summary by selecting top 3 sentences with highest scores
+Summary_sentences = nlargest(3, sentence_scores, key=sentence_scores.get)
+Summary = ‘ ‘.join(summary_sentences)
+
+Print(summary)
+

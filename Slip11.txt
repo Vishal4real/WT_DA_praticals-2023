@@ -1,0 +1,82 @@
+Slip 11
+Q1
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JavaScript Example</title>
+	<style>
+		#name {
+			Font-size: 14px;
+			Color: black;
+		}
+	</style>
+</head>
+<body>
+	<input type=”text” id=”name” onblur=”changeStyle()” onmouseover=”changeSize()” onmouseout=”resetSize()” onmousedown=”changeColor()” onmouseup=”resetColor()”>
+	<img id=”img” src=https://via.placeholder.com/150 onload=”changeImageSize()”>
+	
+	<script>
+		Function changeStyle() {
+			Let name = document.getElementById(“name”).value;
+			If (name) {
+				Document.getElementById(“name”).style.fontSize = “18px”;
+				Document.getElementById(“name”).style.color = “red”;
+			} else {
+				Document.getElementById(“img”).style.display = “block”;
+			}
+		}
+
+		Function changeSize() {
+			Document.getElementById(“name”).style.fontSize = “16px”;
+		}
+
+		Function resetSize() {
+			Document.getElementById(“name”).style.fontSize = “14px”;
+		}
+
+		Function changeColor() {
+			Document.getElementById(“name”).style.color = “blue”;
+		}
+
+		Function resetColor() {
+			Document.getElementById(“name”).style.color = “red”;
+		}
+
+		Function changeImageSize() {
+			Document.getElementById(“img”).style.width = “200px”;
+			Document.getElementById(“img”).style.height = “200px”;
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+Q2
+Import pandas as pd
+From mlxtend.preprocessing import TransactionEncoder
+From mlxtend.frequent_patterns import apriori, association_rules
+
+# Creating the dataset
+Dataset = [[‘butter’, ‘bread’, ‘milk’], [‘butter’, ‘flour’, ‘milk’, ‘sugar’], [‘butter’, ‘eggs’, ‘milk’, ‘salt’], [‘eggs’], [‘butter’, ‘flour’, ‘milk’, ‘salt’]]
+Df = pd.DataFrame(dataset)
+
+# Converting the categorical values into numeric format
+Te = TransactionEncoder()
+Te_ary = te.fit(dataset).transform(dataset)
+Df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Generating frequent itemsets using Apriori algorithm with different min_sup values
+Min_sup_values = [0.4, 0.3, 0.2]
+For min_sup in min_sup_values:
+    Frequent_itemsets = apriori(df, min_support=min_sup, use_colnames=True)
+    Print(“Frequent Itemsets with minimum support of”, min_sup)
+    Print(frequent_itemsets)
+
+    # Generating association rules
+    Rules = association_rules(frequent_itemsets, metric=”confidence”, min_threshold=0.7)
+    Print(“Association Rules with minimum support of”, min_sup)
+    Print(rules)
+
